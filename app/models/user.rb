@@ -9,6 +9,8 @@ class User < ApplicationRecord
   validates :last_name_furigana,  presence: true
   validates :first_name_furigana, presence: true
   validates :birthday,            presence: true
+  validates :password,            presence: true, length: { minimum: 6 }, format:{with: /(?=.*[a-zA-Z])(?=.*\d)[a-zA-Z\d]{6,}/}
+  validates :email   ,            presence: true
 
   has_many :items
   has_many :buyers
