@@ -6,15 +6,18 @@ RSpec.describe User, type: :model do
   end
   # pending "add some examples to (or delete) #{__FILE__}"
   describe 'ユーザー新規登録' do
-    it 'nicknameとemail、passwordとpassword_confirmation、last_nameとfirst_name、
-        last_name_furiganaとfirst_name_furigana、birthdayが存在すれば登録できる' do
-    end
-    it 'emailが@を含んでいれば登録できる' do
-    end
-    it 'passwordとpassword_confirmationが6文字以上であれば登録できる' do
-    end
-    it 'passwordが半角英数字混合であれば登録できる' do
-    end
+      it 'nicknameとemail、passwordとpassword_confirmation、last_nameとfirst_name、
+          last_name_furiganaとfirst_name_furigana、birthdayが存在すれば登録できる' do
+          expect(@user).to be_valid
+      end
+      it 'emailが@を含んでいれば登録できる' do
+        @user.email = 'test@co.jp'
+        expect(@user).to be_valid
+      end
+      it 'passwordとpassword_confirmationが6文字以上かつ半角英数字混合であれば登録できる' do
+        @user.password = 'aa0000'
+        @user.password_confirmation = 'aa0000'
+      end
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
