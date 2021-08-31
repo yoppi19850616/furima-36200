@@ -58,12 +58,21 @@ RSpec.describe User, type: :model do
       expect(user.errors.full_messages).to include("Password confirmation doesn't match Password")
     end
     it 'passwordが5文字以下では登録できない' do
+      user = User.new(nickname: 'test', email: 'test@example', password: 'aa000', password_confirmation: 'aa0000', last_name: '山田', first_name: '太郎', last_name_furigana: 'ヤマダ', first_name_furigana: 'タロウ', birthday: '1985-06-16')
+      user.valid?
+      expect(user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
     end
     it 'passwordが半角英数字混合で無ければ登録できない' do
+      user = User.new(nickname: 'test', email: 'test@example', password: '000000', password_confirmation: 'aa0000', last_name: '山田', first_name: '太郎', last_name_furigana: 'ヤマダ', first_name_furigana: 'タロウ', birthday: '1985-06-16')
+      user.valid?
+      expect(user.errors.full_messages).to include("Password is invalid")
     end
     it '重複したemailが存在する場合登録できない' do
     end
     it 'emailに@が無ければ登録できない' do
+      user = User.new(nickname: 'test', email: 'testexample', password: 'aa0000', password_confirmation: 'aa0000', last_name: '山田', first_name: '太郎', last_name_furigana: 'ヤマダ', first_name_furigana: 'タロウ', birthday: '1985-06-16')
+      user.valid?
+      expect(user.errors.full_messages).to include("Email is invalid")
     end
   end
 end
