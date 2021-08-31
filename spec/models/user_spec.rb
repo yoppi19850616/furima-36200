@@ -6,18 +6,18 @@ RSpec.describe User, type: :model do
   end
   # pending "add some examples to (or delete) #{__FILE__}"
   describe 'ユーザー新規登録' do
-      it 'nicknameとemail、passwordとpassword_confirmation、last_nameとfirst_name、
+    it 'nicknameとemail、passwordとpassword_confirmation、last_nameとfirst_name、
           last_name_furiganaとfirst_name_furigana、birthdayが存在すれば登録できる' do
-          expect(@user).to be_valid
-      end
-      it 'emailが@を含んでいれば登録できる' do
-        @user.email = 'test@co.jp'
-        expect(@user).to be_valid
-      end
-      it 'passwordとpassword_confirmationが6文字以上かつ半角英数字混合であれば登録できる' do
-        @user.password = 'aa0000'
-        @user.password_confirmation = 'aa0000'
-      end
+      expect(@user).to be_valid
+    end
+    it 'emailが@を含んでいれば登録できる' do
+      @user.email = 'test@co.jp'
+      expect(@user).to be_valid
+    end
+    it 'passwordとpassword_confirmationが6文字以上かつ半角英数字混合であれば登録できる' do
+      @user.password = 'aa0000'
+      @user.password_confirmation = 'aa0000'
+    end
     it 'nicknameが空では登録できない' do
       @user.nickname = ''
       @user.valid?
@@ -72,24 +72,24 @@ RSpec.describe User, type: :model do
     it 'passwordが5文字以下では登録できない' do
       @user.password = 'aa000'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is too short (minimum is 6 characters)")
+      expect(@user.errors.full_messages).to include('Password is too short (minimum is 6 characters)')
     end
     it 'passwordが半角英数字混合で無ければ登録できない' do
       @user.password = '000000'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Password is invalid")
+      expect(@user.errors.full_messages).to include('Password is invalid')
     end
     it '重複したemailが存在する場合登録できない' do
       @user.save
       another_user = FactoryBot.build(:user)
       another_user.email = @user.email
       another_user.valid?
-      expect(another_user.errors.full_messages).to include("Email has already been taken")
+      expect(another_user.errors.full_messages).to include('Email has already been taken')
     end
     it 'emailに@が無ければ登録できない' do
       @user.email = 'testexample'
       @user.valid?
-      expect(@user.errors.full_messages).to include("Email is invalid")
+      expect(@user.errors.full_messages).to include('Email is invalid')
     end
   end
 end
