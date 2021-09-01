@@ -4,7 +4,6 @@ RSpec.describe User, type: :model do
   before do
     @user = FactoryBot.build(:user)
   end
-  # pending "add some examples to (or delete) #{__FILE__}"
   describe 'ユーザー新規登録' do
     it 'nicknameとemail、passwordとpassword_confirmation、last_nameとfirst_name、
           last_name_furiganaとfirst_name_furigana、birthdayが存在すれば登録できる' do
