@@ -3,7 +3,7 @@ function calculation (){
   itemPrice.addEventListener("keyup", () => {
     const countVal = itemPrice.value - itemPrice.value*0.1;
     const addtaxPrice = document.getElementById("profit");
-    addtaxPrice.innerHTML = `${countVal}`;
+    addtaxPrice.innerHTML = Math.ceil(`${countVal}`);
   });
 };
 
