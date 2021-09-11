@@ -4,7 +4,7 @@ class ItemsController < ApplicationController
     @item = Item.new
     if user_signed_in?
     else
-      redirect_to root_path
+      redirect_to user_session_path
     end
   end
 
