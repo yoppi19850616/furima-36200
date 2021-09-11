@@ -8,7 +8,7 @@ RSpec.describe Item, type: :model do
     context '出品できるとき' do
       it 'title,description,category_id,status_id,shipping_charge_id,area_id,
           send_date_id,price,imageが存在すれば登録できる' do
-          expect(@item).to be_valid
+        expect(@item).to be_valid
       end
     end
     context '出品できないとき' do
@@ -55,12 +55,12 @@ RSpec.describe Item, type: :model do
       it 'priceが9,999,999を超えていては登録できない' do
         @item.price = '10,000,000'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
       it 'priceが300未満では登録できない' do
         @item.price = '200'
         @item.valid?
-        expect(@item.errors.full_messages).to include("Price is out of setting range")
+        expect(@item.errors.full_messages).to include('Price is out of setting range')
       end
       it 'imageが空では登録できない' do
         @item.image = nil

@@ -1,5 +1,4 @@
 class ItemsController < ApplicationController
-
   def new
     @item = Item.new
     if user_signed_in?
@@ -20,6 +19,7 @@ class ItemsController < ApplicationController
   private
 
   def item_params
-    params.require(:item).permit(:title, :description, :category_id, :status_id, :shipping_charge_id, :area_id, :send_date_id, :price, :image).merge(user_id: current_user.id)
+    params.require(:item).permit(:title, :description, :category_id, :status_id, :shipping_charge_id, :area_id, :send_date_id,
+                                 :price, :image).merge(user_id: current_user.id)
   end
 end
