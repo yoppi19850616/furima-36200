@@ -4,6 +4,6 @@ class BuyersController < ApplicationController
     @item = Item.find(params[:item_id])
   end
 
-  def new
+  def create
   end
 end
