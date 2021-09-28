@@ -2,8 +2,6 @@
 
 <div class='transaction-contents'>
   <div class='transaction-main'>
-      <%= form_with  model: @buyers, url: item_buyers_path, id:'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
-    <%= render 'shared/error_messages', model: f.object %> 
     <h1 class='transaction-title-text'>
       購入内容の確認
     </h1>
@@ -28,6 +26,8 @@
         ¥<%= "#{@item.price}" %>
       </p>
     </div>
+    <%= form_with  model: @buyers, url: item_buyers_path, id:'charge-form', class: 'transaction-form-wrap',local: true do |f| %>
+    <%= render 'shared/error_messages', model: f.object %> 
 
     <div class='credit-card-form'>
       <h1 class='info-input-haedline'>
