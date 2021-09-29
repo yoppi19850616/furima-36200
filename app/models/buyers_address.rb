@@ -10,6 +10,7 @@ class BuyersAddress
     validates :municipalities,  format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ }
     validates :number_address
     validates :phone_number,    format: { with: /\A[0-9]+\z/ }
+    validates :token
   end
 
   def save
