@@ -9,7 +9,7 @@ class BuyersAddress
     validates :area_id,         numericality: { other_than: 1, message: "can't be blank" }
     validates :municipalities,  format: { with: /\A[ぁ-んァ-ン一-龥]+\z/ }
     validates :number_address
-    validates :phone_number,    format: { with: /\A[0-9]+\z/ }
+    validates :phone_number,    format: { with: /\A[0-9]{10}+\z/ }
     validates :token
   end
 
