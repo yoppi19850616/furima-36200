@@ -1,5 +1,7 @@
 class BuyersController < ApplicationController
-  before_action :move_to_index_soldout, only: [:index]
+  before_action :authenticate_user!, only: [:create, :index]
+  before_action :move_to_index_soldout, only: [:create]
+
   def index
     @buyers = BuyersAddress.new
     @item = Item.find(params[:item_id])
