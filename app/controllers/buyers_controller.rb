@@ -1,4 +1,5 @@
 class BuyersController < ApplicationController
+  before_action :move_to_index_soldout, only: [:index]
   def index
     @buyers = BuyersAddress.new
     @item = Item.find(params[:item_id])
@@ -31,6 +32,10 @@ private
         card: buyer_params[:token],  
         currency: 'jpy' 
       )
+  end
+
+  def move_to_index_soldout
+    redirect_to root_path if @item.nil?
   end
 
 end
