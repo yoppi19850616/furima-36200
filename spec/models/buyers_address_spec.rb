@@ -14,8 +14,8 @@ RSpec.describe BuyersAddress, type: :model do
         expect(@buyers_address).to be_valid
       end
       it 'building_nameが空でも保存できること' do
-      @buyers_address.building_name = ''
-      expect(@buyers_address).to be_valid
+        @buyers_address.building_name = ''
+        expect(@buyers_address).to be_valid
       end
       it 'phone_numberが10桁でも保存できること' do
         @buyers_address.phone_number = '0000000000'
@@ -36,7 +36,7 @@ RSpec.describe BuyersAddress, type: :model do
       it 'postal_codeが半角のハイフンを含んだ正しい形式でないと保存できないこと' do
         @buyers_address.postal_code = '1234567'
         @buyers_address.valid?
-        expect(@buyers_address.errors.full_messages).to include("Postal code is invalid. Include hyphen(-)")
+        expect(@buyers_address.errors.full_messages).to include('Postal code is invalid. Include hyphen(-)')
       end
       it 'area_idを選択していないと保存できないこと' do
         @buyers_address.area_id = 1
@@ -61,12 +61,12 @@ RSpec.describe BuyersAddress, type: :model do
       it 'phone_numberが12桁以上だと保存できないこと' do
         @buyers_address.phone_number = '000000000000'
         @buyers_address.valid?
-        expect(@buyers_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@buyers_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'phone_numberが9桁以下だと保存できないこと' do
         @buyers_address.phone_number = '000000000'
         @buyers_address.valid?
-        expect(@buyers_address.errors.full_messages).to include("Phone number is invalid")
+        expect(@buyers_address.errors.full_messages).to include('Phone number is invalid')
       end
       it 'tokenが空だと保存できないこと' do
         @buyers_address.token = ''
