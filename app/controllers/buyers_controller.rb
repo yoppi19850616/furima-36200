@@ -5,6 +5,9 @@ class BuyersController < ApplicationController
 
   def index
     @buyers = BuyersAddress.new
+    if current_user == @item.user
+      redirect_to root_path
+    end
   end
 
   def create
