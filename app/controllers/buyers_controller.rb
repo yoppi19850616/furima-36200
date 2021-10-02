@@ -1,15 +1,14 @@
 class BuyersController < ApplicationController
-  before_action :authenticate_user!, only: [:create, :index]
+  before_action :item_find, only: [:index, :create]
+  before_action :authenticate_user!
   before_action :move_to_index_soldout, only: [:index]
 
   def index
     @buyers = BuyersAddress.new
-    @item = Item.find(params[:item_id])
   end
 
   def create
     @buyers = BuyersAddress.new(buyer_params)
-    @item = Item.find(params[:item_id])
     if @buyers.valid?
       pay_item
       @buyers.save
@@ -38,6 +37,10 @@ class BuyersController < ApplicationController
   end
 
   def move_to_index_soldout
-    redirect_to root_path if @item.nil?
+    redirect_to root_path unless @item.buyer.nil?
+  end
+
+  def item_find
+    @item = Item.find(params[:item_id])
   end
 end
