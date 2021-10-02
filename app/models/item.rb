@@ -8,6 +8,7 @@ class Item < ApplicationRecord
 
   belongs_to :user
   has_one_attached :image
+  has_one :buyer
 
   validates :title,              presence: true
   validates :description,        presence: true
